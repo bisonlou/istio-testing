@@ -1,0 +1,31 @@
+version: "3.9"
+services:
+  app1:
+    image: app1
+    ports:
+      - "5000:5000"
+  app2:
+    image: app2
+    ports:
+      - "5001:5001"
+  app3:
+    image: app3
+    ports:
+      - "5002:5002"
+    environment:
+      - DATABASE_NAME=test
+      - DATABASE_USER=postgres
+      - HOST_NAME=bison
+      - DATABASE_HOST="192.168.1.69"
+      - DATABASE_PASSWORD=postgres
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: test
+    
+networks:
+  default:
+      name: apps
